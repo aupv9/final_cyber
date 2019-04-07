@@ -1,0 +1,63 @@
+.main-detail .detail {
+    width: 80%;
+    margin-top:150px;
+   
+}
+.info{
+    color: #fff;
+}
+.main-detail{
+    position: absolute;
+    top:15%;
+    left: 25%;
+}
+.info button{
+    background: #fb4226;
+    border: none;
+    color: #fff;
+}
+.info-btnMua{
+    font-size: 16px;
+                    border-radius: 4px;
+                    text-align: center;
+                    background: 0 0;
+                    padding: 7px 25px;
+                    transition: all .2s;
+                    margin-top: 25px;
+                    margin-bottom: 20px;
+                    background-color: #fb4226;
+                    border: none;
+                    color: #fff;
+}
+.view{
+    position: relative;
+}
+.circleStar{
+    text-align: center;
+    padding: 0;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.circlePercent{
+    position: relative;
+    font-size: 126px;
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    margin: auto;
+    background-color: rgba(0,0,0,.4);
+}
+.c100::after{
+    position: absolute;
+    top: .06em;
+    left: .06em;
+    display: block;
+    content: " ";
+    border-radius: 50%;
+    background-color: transparent;
+    opacity: .6;
+    width: .88em;
+    height: .88em;
+}

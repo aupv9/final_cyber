@@ -1,0 +1,12 @@
+.signin{
+    color:#999;
+    text-decoration: none;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+}
+.signin i {
+    font-size:30px;
+    margin-right:10px;
+}
+

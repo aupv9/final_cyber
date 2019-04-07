@@ -1,0 +1,341 @@
+<div class="dashboard-ecommerce">
+  <div class="container-fluid dashboard-content ">
+      <!-- ============================================================== -->
+      <!-- pageheader  -->
+      <!-- ============================================================== -->
+      <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="page-header">
+                  <h2 class="pageheader-title"> </h2>
+                  <p class="pageheader-text"></p>
+                  <div class="page-breadcrumb">
+                      <nav aria-label="breadcrumb">
+                          <ol class="breadcrumb">
+                              <li class="breadcrumb-item"><a href="#" class="breadcrumb-link"></a></li>
+                              <li class="breadcrumb-item active" aria-current="page">Danh Sách Phim Theo Nhóm</li>
+                          </ol>
+                          <select class="form-control w-50" 
+                                required
+                                name="MaNhom"
+                                ngModel (change)="ChangingValue(object.value)" #object>
+                                <option value="">Mã Nhóm</option>  
+                               <option *ngFor="let manhom of manhoms" [value]="manhom">{{manhom}}</option>
+                          </select>
+                        
+                          <button class="btn btn-success mt-3 ml-3" (click)="add()" data-toggle="modal" data-target="#myModalAdd">Thêm Phim</button>
+                      </nav>
+                      
+                  </div>
+                  
+              </div>
+          </div>
+      </div>
+      <!-- ============================================================== -->
+      <!-- end pageheader  -->
+      <!-- ============================================================== -->
+      <div class="row">
+          <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12">
+              <div class="row">
+                  <div class="col-xl-4 col-lg-6 col-md-12 col-sm-12 col-12" *ngFor="let item of dsPhim">
+                      <div class="product-thumbnail">
+                          <div class="product-img-head">
+                              <div class="product-img">
+                                  <img [src]="item.HinhAnh" alt="" class="img-fluid">
+                              </div>                                                   
+                              <div class=""><a href="#" class="product-wishlist-btn"><i class="fas fa-heart"></i></a></div>
+                          </div>
+                          <div class="product-content">
+                              <div class="product-content-head">
+                                  <h3 class="product-title">{{item.TenPhim}}</h3>
+                                  <div class="product-rating display-2">
+                                      {{item.DanhGia}}
+                                  </div>
+                                  <p>{{item.MaNhom}}</p>
+                                  <p>Ngày Khởi Chiếu : {{item.NgayKhoiChieu}}</p>
+                              </div>
+                              <div class="product-btn">
+                                  <a href="#" class="btn btn-primary"  data-toggle="modal" data-target="#myModalUpdate" (click)="update(item.MaPhim,item.Trailer,item.HinhAnh)">Cập Nhật </a>
+                                  <a  class="btn btn-danger mx-2" (click)="delete(item.MaPhim)">Xóa </a>
+                                  <a href="#" class="btn btn-outline-light"><i class="fas fa-exchange-alt"></i></a>
+                              </div>
+                          </div>
+                      </div>
+                       <!-- The Modal Update-->
+                      <div class="modal" id="myModalUpdate">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+  
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                <h4 class="modal-title">Thông Tin Phim</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+  
+                              <!-- Modal body -->
+                              <div class="modal-body">
+                                  <p>{{maphim}}</p> 
+                                  <form #frmDangKy="ngForm" class="container" (ngSubmit)="Update(frmDangKy.value)">
+                                    <h3 class="display-4">Cập Nhật Phim</h3>
+                                   
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Mã Phim</span>
+                                          <input  class="form-control" name="MaPhim"
+                                            #MaPhim='ngModel' ngModel="{{maphim}}" required disabled/>
+                                        </div>
+                                      </div>
+                                    </div>                   
+                                     <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Tên Phim</span>
+                                          <input required #TenPhim="ngModel" class="form-control" name="TenPhim" ngModel />
+                                          <div *ngIf="(TenPhim.touched || TenPhim.dirty) && TenPhim.errors ">
+                                            <div *ngIf="TenPhim.errors.required" class="alert alert-danger text-danger">
+                                              Tên phim không được để trống
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>                    
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Trailer</span>
+                                          <input  class="form-control" name="Trailer"
+                                            #Trailer='ngModel' ngModel required  ngModel="{{trailer}}"/>
+                                          <div *ngIf="(Trailer.touched || Trailer.dirty) && Trailer.errors ">
+                                            <div *ngIf="Trailer.errors.required" class="alert alert-danger text-danger">
+                                                Trailer không được rổng !
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>                   
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Mô Tả</span>
+                                          <input  #MoTa="ngModel" required 
+                                          class="form-control" name="MoTa" ngModel />
+                                          
+                                          <div *ngIf="(MoTa.touched || MoTa.dirty) && MoTa.error">
+                                            <div class="alert alert-danger text-danger">
+                                                Mô tả không nên để trống
+                                            </div>
+                                           </div>
+                                        </div>
+                                      </div>
+                                    </div>                    
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Mã Nhóm</span>
+                                          <select class="form-control" 
+                                          required
+                                             name="MaNhom"
+                                             ngModel >
+                                             <option value="">Mã Nhóm</option>  
+                                            <option *ngFor="let manhom of manhoms" [value]="manhom">{{manhom}}</option>
+                                            </select>
+                                        
+                                        </div>
+                                      </div>
+                                    </div>                    
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Ngày Khởi Chiếu</span>
+                                          <input  type="text" class="form-control" name="NgayKhoiChieu" bsDatepicker
+                                            #NgayKhoiChieu='ngModel' ngModel required />
+                                        </div>
+                                      </div>
+                                    </div>    
+                                    
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Đánh Giá</span>
+                                          <select class="form-control" 
+                                          required
+                                             name="DanhGia"
+                                             ngModel >
+                                             <option value="">Đánh Giá</option>  
+                                            <option *ngFor="let dg of danhgias" [value]="dg">{{dg}}</option>
+                                            </select>
+                                        
+                                        </div>
+                                      </div>
+                                    </div>             
+
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Hình Ảnh</span>
+                                          <input  type="text" class="form-control" name="HinhAnh" 
+                                            #HinhAnh='ngModel' ngModel="{{hinhanh}}" required />
+                                        </div>
+                                      </div>
+                                    </div>   
+
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <button [disabled]="frmDangKy.invalid || frmDangKy.submitted" type="submit" class="btn btn-success">Save</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </form>                            
+                              </div>
+                              <!-- Modal footer -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              </div>
+  
+                            </div>
+                          </div>
+                        </div>
+                        <!--The modal add-->
+                        <div class="modal" id="myModalAdd">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+  
+                              <!-- Modal Header -->
+                              <div class="modal-header">
+                                <h4 class="modal-title">Thông Tin Phim</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              </div>
+  
+                              <!-- Modal body -->
+                              <div class="modal-body">
+                                  <p>{{maphim}}</p> 
+                                  <form #frmDangKy="ngForm" class="container" (ngSubmit)="Add(frmDangKy.value)">
+                                    <h3 class="display-4">Thêm Phim</h3>
+                                   
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Mã Phim</span>
+                                          <input  class="form-control" name="MaPhim"
+                                            #MaPhim='ngModel' ngModel required />
+                                        </div>
+                                      </div>
+                                    </div>                   
+                                     <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Tên Phim</span>
+                                          <input required #TenPhim="ngModel" class="form-control" name="TenPhim" ngModel />
+                                          <div *ngIf="(TenPhim.touched || TenPhim.dirty) && TenPhim.errors ">
+                                            <div *ngIf="TenPhim.errors.required" class="alert alert-danger text-danger">
+                                              Tên phim không được để trống
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>                    
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Trailer</span>
+                                          <input  class="form-control" name="Trailer"
+                                            #Trailer='ngModel' ngModel required  ngModel="{{trailer}}"/>
+                                          <div *ngIf="(Trailer.touched || Trailer.dirty) && Trailer.errors ">
+                                            <div *ngIf="Trailer.errors.required" class="alert alert-danger text-danger">
+                                                Trailer không được rổng !
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>                   
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Mô Tả</span>
+                                          <input  #MoTa="ngModel" required 
+                                          class="form-control" name="MoTa" ngModel />
+                                          
+                                          <div *ngIf="(MoTa.touched || MoTa.dirty) && MoTa.error">
+                                            <div class="alert alert-danger text-danger">
+                                                Mô tả không nên để trống
+                                            </div>
+                                           </div>
+                                        </div>
+                                      </div>
+                                    </div>                    
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Mã Nhóm</span>
+                                          <select class="form-control" 
+                                          required
+                                             name="MaNhom"
+                                             ngModel >
+                                             <option value="">Mã Nhóm</option>  
+                                            <option *ngFor="let manhom of manhoms" [value]="manhom">{{manhom}}</option>
+                                            </select>
+                                        
+                                        </div>
+                                      </div>
+                                    </div>                    
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Ngày Khởi Chiếu</span>
+                                          <input  type="text" class="form-control" name="NgayKhoiChieu" bsDatepicker
+                                            #NgayKhoiChieu='ngModel' ngModel required />
+                                        </div>
+                                      </div>
+                                    </div>    
+                                    
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Đánh Giá</span>
+                                          <select class="form-control" 
+                                          required
+                                             name="DanhGia"
+                                             ngModel >
+                                             <option value="">Đánh Giá</option>  
+                                            <option *ngFor="let dg of danhgias" [value]="dg">{{dg}}</option>
+                                            </select>
+                                        
+                                        </div>
+                                      </div>
+                                    </div>             
+
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <span>Hình Ảnh</span>
+                                          <input  type="text" class="form-control" name="HinhAnh" 
+                                            #HinhAnh='ngModel' ngModel="{{hinhanh}}" required />
+                                        </div>
+                                      </div>
+                                    </div>   
+
+                                    <div class="row">
+                                      <div class="col-md-8">
+                                        <div class="form-group">
+                                          <button [disabled]="frmDangKy.invalid || frmDangKy.submitted" type="submit" class="btn btn-success">Save</button>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </form>                            
+                              </div>
+                              <!-- Modal footer -->
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                              </div>
+  
+                            </div>
+                          </div>
+                        </div>
+                  </div>            
+              </div>
+          </div>
+      </div>
+  </div>
+
+ 

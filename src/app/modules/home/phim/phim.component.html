@@ -1,0 +1,24 @@
+
+<div style="background: #fff;border-radius: 5px;" id="home-dsphim">
+  <div class="row mt-5" id="lichchieu">
+    <div class="col-12 text-center mt-3">
+      <a class="mr-3 title-p"  (click)="hienPhimDangChieu()" style="font-size: 24px" >PHIM ĐANG CHIẾU</a>
+      <a class="mr-3 title-p" (click)="hienPhimSapChieu()" style="font-size: 24px">PHIM SẮP CHIẾU</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <app-phim-dang-chieu *ngIf="flag;else hidePDC"></app-phim-dang-chieu>
+    </div>
+    <ng-template #hidePDC>
+    <div class="col-12">
+        <app-phim-sap-chieu></app-phim-sap-chieu>
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+
+
+
+

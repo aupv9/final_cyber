@@ -1,0 +1,213 @@
+
+<div id="header-top">
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow fixed-top shadow-sm p-0">
+  <div class="container">
+    <a class="navbar-brand" href="#" [routerLink]="[ '/' ]" (click)="triggerScrollTo('header-top')">
+      <img src="https://s3img.vcdn.vn/123phim/2018/09/b79ac4d8839d06c71c684398274620bd.png" alt="" style="    width: 50px;height: 50px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link header-title" (click)="triggerScrollTo('home-dsphim')" >Lịch Chiếu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link header-title" (click)="triggerScrollTo('home-tintuc')">Tin Tức</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link header-title" (click)="triggerScrollTo('')">Ứng Dụng</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle signin"id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-user-circle"></i>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+            <ng-container *ngIf="flag;else logout">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#formLog">Đăng Nhập</a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#formReg" >Đăng Ký</a>
+            </ng-container>
+            <ng-template #logout>
+              <a class="dropdown-item" href="#"  routerLink="/lichsudatve" (click)="expression">Xem Lịch Sử Đặt Vé</a>
+              <a class="dropdown-item" href="#" (click)="logOut()"  routerLink="/">Đăng Xuất</a>
+            </ng-template>
+            
+           
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</div>
+
+
+<div class="modal fade" id="formReg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold"> <h3 class="display-4">Đăng ký</h3>     </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form #frmDangKy="ngForm" class="container" (ngSubmit)="DangKy(frmDangKy.value)">
+         
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <span>Tài khoản</span>
+                <input  class="form-control" name="TaiKhoan"
+                  #taiKhoan='ngModel' ngModel required />
+                <div *ngIf="(taiKhoan.touched || taiKhoan.dirty) && taiKhoan.errors ">
+                  <div *ngIf="taiKhoan.errors.required" class="alert alert-danger text-danger">
+                    Tài khoản không được bỏ trống
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <span>Mật khẩu</span>
+                <input required #matKhau="ngModel" class="form-control" name="MatKhau" ngModel />
+                <div *ngIf="(matKhau.touched || matKhau.dirty) && matKhau.errors ">
+                  <div *ngIf="matKhau.errors.required" class="alert alert-danger text-danger">
+                    Mật khẩu không được để trống
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <span>Email</span>
+                <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" class="form-control" name="Email"
+                  #email='ngModel' ngModel required />
+                <div *ngIf="(email.touched || email.dirty) && email.errors ">
+                  <div *ngIf="email.errors.required" class="alert alert-danger text-danger">
+                    Email không được rổng !
+                  </div>
+                  <div *ngIf="email.errors.pattern" class="alert alert-danger text-danger">
+                    Email không đúng định dạng
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <span>Nhập lại khẩu</span>
+                <input  #reMatKhau="ngModel" required [ngClass]="{'ng-invalid': reMatKhau.value != matKhau.value}" 
+                class="form-control" name="reMatKhau" ngModel />
+                <div *ngIf="(reMatKhau.touched || reMatKhau.dirty) && reMatKhau.errors || reMatKhau.value != matKhau.value">
+                  <!-- <div *ngIf="kiemTraMatKhau(reMatKhau.value,matKhau.value)" class="alert alert-danger text-danger">
+                    Mật khẩu không trùng khớp
+                  </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <span>Họ tên</span>
+                <input required #hoTen="ngModel" class="form-control" name="HoTen" ngModel />
+                <div *ngIf="(hoTen.touched || hoTen.dirty) && hoTen.errors ">
+                  <div *ngIf="hoTen.errors.required" class="alert alert-danger text-danger">
+                    Họ tên không được để trống
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <span>Số điện thoại</span>
+                <input  type="number" class="form-control" name="SoDienThoai"
+                  #SoDienThoai='ngModel' ngModel required />
+                <div *ngIf="(SoDienThoai.touched || SoDienThoai.dirty) && SoDienThoai.errors ">
+                  <div *ngIf="SoDienThoai.errors.required" class="alert alert-danger text-danger">
+                    Số điện thoại không được bỏ trống
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <button [disabled]="frmDangKy.invalid || frmDangKy.submitted" type="submit" class="btn btn-success">Đăng ký</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="formLog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold"> <h3 class="display-4">Đăng Nhập</h3>     </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <form #frmDangNhap="ngForm" class="container" (ngSubmit)="DangNhap(frmDangNhap.value)">
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <span>Tài khoản</span>
+                <input  class="form-control" name="TaiKhoan"
+                  #taiKhoan='ngModel' ngModel required />
+                <div *ngIf="(taiKhoan.touched || taiKhoan.dirty) && taiKhoan.errors ">
+                  <div *ngIf="taiKhoan.errors.required" class="alert alert-danger text-danger">
+                    Tài khoản không được bỏ trống
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <span>Mật khẩu</span>
+                <input required #matKhau="ngModel" class="form-control" name="MatKhau" ngModel />
+                <div *ngIf="(matKhau.touched || matKhau.dirty) && matKhau.errors ">
+                  <div *ngIf="matKhau.errors.required" class="alert alert-danger text-danger">
+                    Mật khẩu không được để trống
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <div class="form-group">
+                <button [disabled]="" type="submit" class="btn btn-success">Đăng Nhập</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

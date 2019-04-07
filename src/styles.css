@@ -1,1 +1,335 @@
-/* You can add global styles to this file, and also import other style files */
+/*loader*/
+.app-loading {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.app-loading .spinner {
+  height: 200px;
+  width: 200px;
+  animation: rotate 2s linear infinite;
+  transform-origin: center center;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.app-loading .spinner .path {
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  animation: dash 1.5s ease-in-out infinite;
+  stroke-linecap: round;
+  stroke: #ddd;
+}
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
+}
+
+/*end loader*/
+
+html,*{
+  font-family:  Roboto,Helvetica,Arial,sans-serif;
+}
+.new__item {
+  display: block;
+  position: relative;
+  height: 100%;
+}
+.new__item img{
+ height: 100%;
+  width: 100%;
+}
+.new__item .overlay{
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height:100%;
+  padding:0 15px;
+  background: rgba(0,0,0,0.2)
+}
+figure.effect-ruby h2{
+  margin:0
+}
+figure.effect-ruby p{
+  padding:1em 0.3rem;
+}
+
+/*start header*/
+
+.header-title{
+  font-size: 20px;
+  font-family: 'SF Regular';
+  color: #000;
+}
+.nav-item:hover .header-title{
+  color: red;
+}
+/*end header*/
+
+/*start footer */
+#footer{  
+  background: #222;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #949494;
+}
+.mainMaxWidth{
+  max-width: 940px;
+  float: none;
+  margin: auto;
+  clear: both;
+}
+
+p{
+  margin: 0 0 10px;
+}
+#footer .iconConnect{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 15px;
+}
+#footer .iconApp{
+  background: 0 0;
+  height: 30px;
+  width: auto;
+  margin: 5px;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+#footer .title{
+  color: #fff;
+  font-size: 20px;
+}
+/*end footer*/
+
+/*start phim*/
+
+.title-p{
+  color: black;
+  font-size: 30px
+
+}
+/*end phim*/
+
+/*start item-phim*/
+.filmThumbnail .playTrailer {
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  top: 30%;
+  left: 45%;
+  transform: translate(-50%,-50%);
+  z-index: 3;
+  background: 0 0;
+  border: none;
+  display: none;
+  background: transparent !important;
+  
+}
+.filmThumbnail .hoverInfo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: 0 0;
+  
+  top: 0;
+  border-radius: 4px;
+}
+.filmThumbnail img {
+  border-radius: 4px;
+}
+.film {
+  padding: 0 10px;
+  margin-bottom: 25px;
+  cursor: pointer;
+  height: 400px;
+}
+.img-playtrailer{
+  width: 30px;
+  height: 30px;
+}
+.filmThumbnail:hover .playTrailer{
+  display: block;
+
+}
+.film .filmThumbnail:hover .name-phim{
+  display: none;
+}
+.film:hover .btn-muave{
+  display: block;
+  padding-left: 10px
+}
+.filmThumbnail .btn-muave{
+  border: none;
+  background-color:#fa5238;
+  border:none;
+  padding:10px 20px;
+  color:white;
+  display: block;
+  width: 100%;
+  font-size:20px;
+  border-radius: 5px;
+  display: none;
+  margin-top:10px;
+  position: relative;
+  left: 10px;
+  bottom: 1;
+
+
+}
+.filmThumbnail{
+  position: static;
+}
+.ageType {
+  background: #fb4226;
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  border-radius: 4px;
+  padding: 0 5px;
+  color: #fff;
+  min-width: 33px;
+  text-align: center;
+}
+.avgPoint{
+  font-family: 'SF Medium';
+  font-size: 16px;
+  background-color: rgba(12,27,54,.8);
+  border: 1px solid #1f2e46;
+  border-radius: 4px;
+  padding: 2px;
+  position: absolute;
+  top: 12px;
+  right: 40px;
+  color: #fff;
+  width: 54px;
+  text-align: center;
+}
+
+a:hover{
+  color: red !important;
+}
+.hoverInfo .playTrailer:hover.img-playtrailer{
+  overflow: hidden;
+  scale: 2;
+}
+/*end item-phim*/
+
+/*start tin tuc*/
+.main-tintuc .title-tintuc{
+    font-size: 50xp ;
+}
+.effect-ruby:hover{
+  background: #efeff6;
+}
+/*end tin tuc*/
+
+
+/**/
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+/**/
+
+
+/*start ghe*/
+.ghe{
+
+  cursor: pointer;
+    position: relative;
+    border-radius: 3px;
+    margin-right: 5px;
+    display: inline-block;
+    height: 26px;
+    width: 26px;
+    text-align: center;
+}
+.step-checkout{
+  width: 50%;
+  text-align: center;
+}
+
+.title-step{
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+#ghe-checkout{
+  margin-top: 80px;
+  padding-top: 30px;
+  width: 70%;
+}
+.checout-content{
+  width: 70%;
+  margin: auto;
+} 
+.display-checkout{
+
+
+}
+.checkout-top{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 300px;
+}
+.checkout-title{
+
+}
+.logo-checkout{
+  width: 50%;
+}
+.checkout-title{
+  width: 50%;
+  margin-left: 10px;
+}
+/*end ghe*/
+
+/*start tool filter*/
+.tool-home{
+  background: #fff;
+  height: 80px;
+  align-content: center;
+  justify-content: center;
+  padding: 25px 0;
+  border: none;
+  border-radius: 5px;
+}
+.tool-content{
+  width: 100%;
+}
+
+/*end tool filter*/

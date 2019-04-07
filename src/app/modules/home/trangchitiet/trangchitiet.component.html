@@ -1,0 +1,62 @@
+<div class="view" style="height: 779px;width: 1903px;background: linear-gradient(to top, rgb(10, 32, 41), transparent 100%);margin: 0;padding: 0">
+  <div class="main-detail container mb-5">
+    <div class="row detail align-items-center">
+            <div class="img-phim col-sm-3 col-xs-4">
+                    <img [src]="chitietPhim.HinhAnh" alt="chitietPhim.TenPhim">
+                </div>
+                <div class="info col-sm-3 col-xs-4">
+                    <p >{{chitietPhim.NgayKhoiChieu | date:'medium'}}</p>
+                    <span style="margin-right: 6px;
+                    margin-top: 6px;
+                    float: left;
+                    background-color: #fb4226;
+                    color: #fff;
+                    font-size: 16px;
+                    border-radius: 4px;
+                    padding: 0 5px;
+                    display: inline-block;
+                    text-align: center;">C13</span>
+                    <p style="font-size: 24px;font-family: 'SF Medium';">{{chitietPhim.TenPhim}}</p>
+                    <p>Thời Lượng : {{chitietPhim.LichChieu[0].ThoiLuong}} phút</p>
+                    <button class="p-2 info-btnMua">Mua Vé</button>
+            </div>
+                <div class="circleStar  col-sm-2 col-xs-2 ">    
+                  <div class="circleSum"></div>     
+                  <div id="circlePercent" class="c100 p80">
+                    <div class="circleBorder">
+                    </div>
+                    <div>8</div>
+                    <div class="slice">
+                      <div class="bar"></div>
+                      <div class="fill"></div>
+                    </div>
+                  </div>      
+                </div>
+    </div>
+</div>
+</div>
+<div class="container mt-5 mb-5" style="width: 80%;height: 300px;">
+        <ul class="nav nav-tabs" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link active" href="#profile" role="tab" data-toggle="tab">Lịch Chiếu</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#buzz" role="tab" data-toggle="tab">Thông Tin</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#references" role="tab" data-toggle="tab">Đánh Giá</a>
+                </li>
+        </ul>             
+              <!-- Tab panes -->
+              <div class="tab-content align-items-center">
+                <div role="tabpanel" class="tab-pane fade in active" id="profile">
+                    <button href="" *ngFor="let item of chitietPhim.LichChieu" style="margin: 10px;border: 1px s" class="btn btn-outline-success" 
+                    [routerLink]="[ '/trangdatve',item.MaLichChieu ]">
+                        {{item.NgayChieuGioChieu | date:'dd/mm,hh:mmm'}}
+                    </button>
+                </div>
+              </div>
+</div> 
+
+
+ 

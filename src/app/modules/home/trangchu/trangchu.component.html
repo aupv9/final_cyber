@@ -1,0 +1,24 @@
+<!--Slider-->
+<app-carousel></app-carousel>
+<div class="tool-home container mt-5 mb-5">
+    <div class="tool-content row">
+        <div class="col-sm-6 text-center">
+            <input type="text" placeholder="Nhập vào tên phim bạn cần tìm ....." style="width: 80%;border-radius: 5px;height: 35px;" #ipTenPhim (change)="filterPhim(ipTenPhim.value)">
+        </div>
+        <div class="col-sm-2 pl-2">
+            <input placeholder="Ngày Chiếu" class="form-control" #dp="bsDatepicker"bsDatepicker style="text-align: center;width: 60%;" #ngaychieu>
+        </div>
+        <div class="col-sm-4">
+            <button class="btn ml-5" style="border-radius: 5px;background: chocolate;color: #fff" (click)="search(ipTenPhim.value,ngaychieu.value)">TÌM KIẾM</button>
+        </div>
+    </div>
+</div>
+<!--Phim-->
+ <div class="container " style="box-sizing: border-box;width: 80%;margin: auto">
+    <app-phim></app-phim>
+</div>
+<div class="container mt-5">
+    <app-tin-tuc></app-tin-tuc>
+</div>
+
+

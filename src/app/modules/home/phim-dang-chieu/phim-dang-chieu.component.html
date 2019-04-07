@@ -1,0 +1,13 @@
+<div class="exampleSlider">
+   <div class="MS-content">
+
+       <div class="item col-12" *ngFor="let item of arrPhim">
+            <app-item-phim [phim]="item"></app-item-phim>
+       </div>
+       
+   </div>
+   <div class="MS-controls">
+       <button class="MS-left"><i class="fa fa-chevron-left" aria-hidden="true"></i></button>
+       <button class="MS-right"><i class="fa fa-chevron-right" aria-hidden="true"></i></button>
+   </div>
+</div>

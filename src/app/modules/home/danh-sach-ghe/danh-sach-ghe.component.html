@@ -1,0 +1,35 @@
+
+<div class="container mt-5 mb-5">
+  <div class="row">
+      <div class="col-sm-6 col-xs-4 p-5 mx-auto mt-5">
+          <h5 style="background:#fff;height: 50px;align-items: center;justify-content: center ;text-align: center">Màn Hình</h5>
+          <app-ghe *ngFor="let item of dsGhe" [ghe]="item" (status)="datGhe($event,item)" ></app-ghe>
+
+           <!-- <p>Số Ghế Chưa Đặt:{{soGheChuaDat}}</p>   -->
+          <p style="margin-top: 30px">Số Ghế Đã Đặt:{{soGheDaDat}}</p>
+
+
+
+          <button class="btn btn-success" (click)="datVe()">Đặt Vé</button>
+          <div class="loai-ghe mt-3">
+            <button class="btn" style="border: none;cursor: none; height: 16px;
+            width: 26px;margin-right: 10px ;background: #cecece"></button> <span style="margin-right: 10px">Ghế Còn Trống</span>
+            <button class="btn" style="background:red;border: none;cursor: none; height: 16px;
+            width: 26px;margin-right: 10px "></button><span style="margin-right: 10px">Ghế Đã Đặt</span>
+            <button class="btn bg-success" style="background:green;border: none;cursor: none; height: 16px;
+            width: 26px; margin-right: 10px"></button><span>Ghế Đang Đặt</span>
+          </div>
+
+
+      </div>
+      <div class="col-sm-6 col-xs-4 info-ghedadat" style="padding-top: 100px">
+          <span>Ghế </span>
+      </div>
+  </div>
+  <div>
+    
+  </div>
+</div>
+
+
+

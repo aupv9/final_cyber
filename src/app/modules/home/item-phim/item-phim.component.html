@@ -1,0 +1,55 @@
+
+<div class="film" >
+    <div class="filmThumbnail">
+        <img [src]="phim.HinhAnh" alt="" class="image-phim">
+        <div style="font-size: 15px;text-align: center;" class="name-phim">{{phim.TenPhim}}</div>
+       
+        <div class="hoverInfo text-center">
+            <button class="playTrailer" data-toggle="modal" data-target="#exampleModalCenter">
+                <img src="../../../../assets/img/play-video.png" alt=""  class="img-playtrailer">
+            </button>
+            <span class="ageType">C18</span>
+            <span  class="avgPoint">
+                <p>{{phim.DanhGia}}</p>
+            
+            </span>
+        </div>
+        <div class="shoInfo">
+            <button class="btn-muave  text-center" [routerLink]="[ '/trangchitiet', phim.MaPhim ]">Mua Vé</button>
+        </div>
+       
+    </div>  
+
+
+    
+</div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog" style="height: 530px;width: 898px;">
+    <div class="modal-dialog modal-lg  modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body" style="width: 100%;height: 100%;">
+          <iframe [src]="phim.Trailer | safe"frameborder="0" width="100%" height="85%"></iframe>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{phim.TenPhim}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <iframe [src]="phim.Trailer | safe"frameborder="0" width="100%" height="85%"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,10 @@
+
+
+<ng-container *ngIf="!ghe.DaDat;else gheDuocDatRoi">
+
+<button class="ghe" (click)="datGhe()" [ngClass]="{'bg-success':flag}"  style="background: #cecece">{{ghe.TenGhe}}</button>
+</ng-container>
+
+<ng-template #gheDuocDatRoi>
+    <button class="ghe text-center ">{{ghe.TenGhe}}</button>
+</ng-template>
