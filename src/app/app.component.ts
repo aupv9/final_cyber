@@ -10,6 +10,8 @@ export class AppComponent implements OnInit{
   title = 'vephim';
   constructor(private spinner: NgxSpinnerService) { }
   ngOnInit(){
+
+
     /** spinner starts on init */
     this.spinner.show();
  

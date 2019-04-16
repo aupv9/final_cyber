@@ -27,7 +27,7 @@ export class TrangchuComponent implements OnInit {
     let rs=_.filter(this.arrPhim,{TenPhim:value})
     this.arrPhim=rs;
     console.log(this.arrPhim);
-    //this.router.navigate([ '/trangchitiet',this.arrPhim[0].MaPhim])
+    this.router.navigate([ '/trangchitiet',this.arrPhim[0].MaPhim])
   }
   search(value1,value2){
     console.log(value1,value2);

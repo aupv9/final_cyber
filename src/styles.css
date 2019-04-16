@@ -141,6 +141,14 @@ a {
 /*end phim*/
 
 /*start item-phim*/
+
+
+.filmThumbnail:hover .image-phim{
+  overflow: hidden;
+  scale: 1.5;
+}
+
+
 .filmThumbnail .playTrailer {
   width: 60px;
   height: 60px;
@@ -238,18 +246,18 @@ a {
 a:hover{
   color: red !important;
 }
-.hoverInfo .playTrailer:hover.img-playtrailer{
-  overflow: hidden;
-  scale: 2;
-}
+
 /*end item-phim*/
 
 /*start tin tuc*/
 .main-tintuc .title-tintuc{
     font-size: 50xp ;
+    
 }
 .effect-ruby:hover{
   background: #efeff6;
+  border-radius: 5px;
+
 }
 /*end tin tuc*/
 
@@ -333,3 +341,10 @@ a:hover{
 }
 
 /*end tool filter*/
+
+/**/
+
+.info-ghe{
+  font-size: 30px;
+}
+/**/

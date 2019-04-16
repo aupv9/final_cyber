@@ -3,6 +3,7 @@ import { PhimService } from 'src/app/_core/services/phim.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/_core/services/user.service';
 import Swal from 'sweetalert2';
+import { toASCII } from 'punycode';
 @Component({
   selector: 'app-danh-sach-ghe',
   templateUrl: './danh-sach-ghe.component.html',
@@ -14,13 +15,12 @@ export class DanhSachGheComponent implements OnInit,OnChanges {
   @Input()dsGhe:any[]=[];
    soGheDaDat:number=0;
    soGheChuaDat:number=this.dsGhe.length;
-  dsGheDangDat:any[]=[];
-  
+    dsGheDangDat:any[]=[];
+    total:number=0;
   ngOnChanges(){
     this.soGheChuaDat=this.dsGhe.length;
     console.log(this.soGheChuaDat);
   }
-
   ngOnInit() {
     console.log(this.dsGhe);
     this.soGheChuaDat=this.dsGhe.length;
@@ -41,22 +41,26 @@ export class DanhSachGheComponent implements OnInit,OnChanges {
       console.log(value1,value2);
       this.soGheDaDat++;
       this.dsGheDangDat.push(value2);     
+      this.total+=value2.GiaVe;
+         
+      
     }else{    
-      this.soGheDaDat--;
+      this.soGheDaDat--;  
       for (const index in this.dsGheDangDat) {
           if(this.dsGheDangDat[index].MaGhe === value2.MaGhe){
             this.dsGheDangDat.splice(parseInt(index),1);
+            this.total-=value2.GiaVe;
           }
+
       }
+
+      
     }
     console.log(this.dsGheDangDat);
   }
-
   malichchieu:string;
   getUser:any=JSON.parse(localStorage.getItem("userLogin")); ///lấy thông tin người dùng qua localStorge
-  
   datVe(){
-
     if(this.getUser === null){
       this.router.navigate(['dangnhap']);
       Swal.fire('Bạn Phải Đăng Nhập Để Tiến Hành Đặt Vé!' , 'warning');
@@ -88,7 +92,6 @@ export class DanhSachGheComponent implements OnInit,OnChanges {
             }
           }
        );
-  
     }
     //console.log(this.getUser);
     //console.log(ve);

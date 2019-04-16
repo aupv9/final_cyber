@@ -30,10 +30,11 @@ export class HeaderComponent implements OnInit {
     console.log(value)
   }
   logOut(){
-    //localStorage.clear();
+    
     localStorage.removeItem("userLogin");
     this.flag=true;
      this.router.navigate(["/"]);
+     localStorage.clear();
     
   }
   scroll(element){

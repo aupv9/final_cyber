@@ -1,0 +1,15 @@
+
+.showInfo-phim{
+    display: block;
+    width: 40%;
+    text-align: center;
+    margin-left: 45px;
+}
+.btn-muave{
+    border: none;
+    background: #fa5238;
+    color: white;
+    width: 200px;
+    height: 50px;
+    border-radius: 5px;
+}
